@@ -124,14 +124,7 @@ class SplashScreen extends StatelessWidget {
                         onTap: () {
                           if (controller.data.length ==
                               controller.activeIndex.value + 1) {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text("It works!"),
-                                );
-                              },
-                            );
+                            controller.skipSplashScreen(context);
                           } else {
                             controller.activeIndex.value += 1;
                             controller.pageController.animateToPage(
@@ -164,7 +157,9 @@ borderRadius: BorderRadius.circular(30)
               child: SafeArea(child: FlatButton(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
-                onPressed: (){}, child:Icon(Icons.arrow_forward_rounded,color: Colors.white,))))
+                onPressed: (){
+                  controller.skipSplashScreen(context);
+                }, child:Icon(Icons.arrow_forward_rounded,color: Colors.white,))))
           ],
         ));
   }
