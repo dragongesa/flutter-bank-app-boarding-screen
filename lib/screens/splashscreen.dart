@@ -10,64 +10,62 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
         body: Stack(
           children: [
-            Flexible(
-              child: Obx(() => PageView.builder(
-                    controller: controller.pageController,
-                    itemCount: controller.data.length,
-                    onPageChanged: (value) {
-                      controller.activeIndex.value = value;
-                    },
-                    itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              controller.images[index],
-                              width: MediaQuery.of(context).size.width - 80,
-                              height: MediaQuery.of(context).size.width - 80,
-                            ),
-                            SizedBox(
-                              height: 21,
-                            ),
-                            Text(
-                              controller.data[index].subtitle,
+            Obx(() => PageView.builder(
+                  controller: controller.pageController,
+                  itemCount: controller.data.length,
+                  onPageChanged: (value) {
+                    controller.activeIndex.value = value;
+                  },
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            controller.images[index],
+                            width: MediaQuery.of(context).size.width - 80,
+                            height: MediaQuery.of(context).size.width - 80,
+                          ),
+                          SizedBox(
+                            height: 21,
+                          ),
+                          Text(
+                            controller.data[index].subtitle,
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              controller.data[index].title,
                               style: TextStyle(
-                                  color: Colors.amber,
-                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontSize: 28,
                                   fontWeight: FontWeight.w700),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                controller.data[index].title,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w700),
-                              ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 25),
+                            child: Text(
+                              controller.data[index].body,
+                              textAlign: TextAlign.center,
+                              softWrap: true,
+                              style: TextStyle(
+                                  height: 1.5,
+                                  color: Colors.black45,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.normal),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25),
-                              child: Text(
-                                controller.data[index].body,
-                                textAlign: TextAlign.center,
-                                softWrap: true,
-                                style: TextStyle(
-                                    height: 1.5,
-                                    color: Colors.black45,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  )),
-            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )),
             Positioned(
               bottom: 40,
               left: 0,
